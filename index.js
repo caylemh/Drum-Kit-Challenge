@@ -3,8 +3,8 @@ let numberOfDice = document.querySelectorAll(".drum").length;
 for(let x=0; x<numberOfDice;x++){
   document.querySelectorAll(".drum")[x].addEventListener("click", function() {
 
-    let buttonInnerHTML = this.innerHTML;
-    playDrum(buttonInnerHTML);
+    playDrum(this.innerHTML);
+    btnAnimation(this.innerHTML);
 
   });
 }
@@ -12,6 +12,7 @@ for(let x=0; x<numberOfDice;x++){
 document.addEventListener("keypress", function(event) {
 
   playDrum(event.key);
+  btnAnimation(event.key);
 
 });
 
@@ -48,4 +49,16 @@ function playDrum(string) {
     default:
 
   }
+}
+
+function btnAnimation(currentKey){
+
+  let activeBtn = document.querySelector(`.${currentKey}`);
+
+  activeBtn.classList.add("pressed");
+
+  setTimeout(function(){
+    activeBtn.classList.remove("pressed");
+  }, 200);
+
 }
